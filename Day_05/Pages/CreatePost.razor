@@ -1,0 +1,49 @@
+﻿@page "/CreatePost"
+
+@inject PostService postService
+@inject NavigationManager navManager 
+
+<h3>CreatePost</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <form>
+                <div class="form-group">
+                    <label for="Title" >Title</label>
+                    <input type="text" class="form-control" @bind-value="post.Title">
+                </div>
+                <div class="form-group">
+                    <label for="Paragarp">Content</label>
+                    <textarea class="form-control" rows="3" @bind="post.Paragraph"></textarea>
+                </div>
+                @*<div class="form-group">
+                    <label for="Date">Date</label>
+                    <InputDate @bind-Value="@post.PostDate" />
+                </div>*@
+
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" class="form-control" @bind-value="post.author">
+                </div>
+                <button type="button" class="btn btn-success btn-block" @onclick="Publish">Publish</button>
+                <button type="button" class="btn btn-secondary btn-block" @onclick="Cancel">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@code {
+    Post post = new Post();
+
+    void Publish()
+    {
+        postService.AddPost(post);
+        navManager.NavigateTo("/BlogPage");
+    }
+    void Cancel()
+    {
+        navManager.NavigateTo("/BlogPage");
+
+    }
+}
