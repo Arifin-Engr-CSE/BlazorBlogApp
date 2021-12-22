@@ -12,6 +12,7 @@ namespace Day_05.Data
         public int PostId { get; set; }
         public string Title { get; set; }
         public string Paragraph { get; set; }
+        public byte[] Image { get; set; }
         public string author { get; set; }
         public DateTime PostDate { get; set; }
     }

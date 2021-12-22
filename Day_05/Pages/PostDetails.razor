@@ -1,0 +1,38 @@
+﻿@page "/PageDetails/{Id:int}"
+@inject PostService postService
+
+
+<div class="jumbotron">
+        <h2 class="text-info">@postData.Title</h2>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            @postData.Paragraph
+        </div>
+    </div>
+</div>
+<hr />
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+    Post postData = new Post();
+
+    protected override void OnInitialized()
+    {
+        postData = DetailPost();
+    }
+
+    public Post DetailPost()
+    {
+        var post = postService.getById(Id);
+        return post;
+
+    }
+
+
+
+}

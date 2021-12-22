@@ -18,10 +18,24 @@ namespace Day_05.Data
             return post;
         }
 
-        public Post AddPost(Post post)
+        public bool AddPost(Post post)
         {
             _db.Posts.Add(post);
             _db.SaveChanges();
+            return true;
+        }
+
+        public Post getById(int id)
+        {
+            var post = _db.Posts.FirstOrDefault(x => x.PostId == id);
+            return post;
+        }
+
+        public Post UpdatePost(Post post)
+        {
+            _db.Posts.Update(post);
+            _db.SaveChanges();
+
             return post;
         }
     }
